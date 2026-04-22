@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastService, ToastType } from '../../services/toast.service';
-import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbToast } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-toast-container',
   standalone: true,
-  imports: [NgbToastModule, CommonModule],
+  imports: [NgbToast,CommonModule],
   templateUrl: './toast-container.html',
   styleUrl: './toast-container.scss',
 })
