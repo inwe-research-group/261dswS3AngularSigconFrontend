@@ -15,10 +15,11 @@ export class Dashboard implements OnInit{
   sessionService=inject(SessionService);
   authService=inject(AuthService);
   router=inject(Router);
-  user:UserSesion|null=null;
+  user:UserSesion | null = null;
 
   ngOnInit(): void {
     this.user=this.sessionService.getInfoSession();
+    console.log(this.user)
   }
 
   logout(){
