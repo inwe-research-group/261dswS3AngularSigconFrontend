@@ -6,7 +6,7 @@ import { Modulo } from '../model/modulo';
 @Injectable({
   providedIn: 'root',
 })
-export class TokenService {
+export class SessionService {
 
   private getDecodedToken():any|null{
     const token=localStorage.getItem('user_token');
