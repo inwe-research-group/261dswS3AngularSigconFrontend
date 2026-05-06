@@ -6,6 +6,7 @@ import { AuthService } from '../../services/auth.service';
 import { ToastService } from '../../services/toast.service';
 import { UserRequest } from '../../model/api/request/user-request';
 import { UserResponse } from '../../model/api/response/user-response';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -21,7 +22,7 @@ export class InicioSesion {
   toastService = inject(ToastService)
   userRequest:UserRequest={} as UserRequest;
   userResponse:UserResponse={} as UserResponse;
-
+  tokenService=inject(TokenService);
 
   form = new FormGroup({
     email: new FormControl('', [Validators.required]),
@@ -42,6 +43,7 @@ export class InicioSesion {
         this.userResponse=result;
         console.log(this.userResponse)
         localStorage.setItem('user_token', this.userResponse.token);
+        console.log(this.tokenService.getInfoSession());
         this.toastService.show('Ingreso exitoso', 'success');
         console.log('Login successful');
         this.router.navigate(['/']);
