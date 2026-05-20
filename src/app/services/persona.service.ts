@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable,inject } from '@angular/core';
 import { PersonaResponse } from '../model/api/response/persona-response';
 import { environment } from '../environments/environment';
 import { Observable } from 'rxjs';
@@ -9,7 +9,7 @@ import { PersonaRequest } from '../model/api/request/persona-request';
   providedIn: 'root',
 })
 export class PersonaService {
-  constructor(private http: HttpClient) {}
+  private http=inject( HttpClient);
 
   getPersonas(): Observable<PersonaResponse[]> {
     return this.http.get<PersonaResponse[]>(`${environment.url}/persona`);

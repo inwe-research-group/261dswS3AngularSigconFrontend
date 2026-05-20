@@ -1,16 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable,inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Ubigeo } from '../model/ubigeo';
 import { environment } from '../environments/environment';
+import { Sexo } from '../model/sexo';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UbigeoService {
+export class SexoService {
   private http=inject( HttpClient)
 
-  getUbigeo(): Observable<Ubigeo[]> {
-    return this.http.get<Ubigeo[]>(`${environment.url}/ubigeo`);
-  }
+  getSexo(): Observable<Sexo[]> {
+      return this.http.get<Sexo[]>(`${environment.url}/sexo`);
+    }
+
 }

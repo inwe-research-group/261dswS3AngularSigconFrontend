@@ -1,17 +1,198 @@
-<p>registrar-persona works!</p>
-<form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+<div class="container p-0">
+  <div class="row">
+  <h5 class="px-4">{{title}}</h5>
+  <div class="card">
+      <div class="card-body">
+        <form class="form-group" [formGroup]="personaForm">
+          <div class="row mb-2">
+            <label for="apellidoPaterno" class="col-form-label col-sm-1">Apellido Paterno</label>
+            <div class="col-sm-4">
+              <input
+              type="text"
+              class="form-control"
+              id="apellidoPaterno"
+              formControlName="apellidoPaterno"
+              placeholder="Apellido Paterno"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <label for="apellidoMaterno" class="col-form-label col-sm-1">Apellido Materno</label>
+            <div class="col-sm-4">
+              <input
+              type="text"
+              class="form-control"
+              id="apellidoMaterno"
+              formControlName="apellidoMaterno"
+              placeholder="Apellido Materno"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <label for="nombres" class="col-form-label col-sm-1">Nombres</label>
+            <div class="col-sm-4">
+              <input
+              type="text"
+              class="form-control"
+              id="nombres"
+              formControlName="nombres"
+              placeholder="Nombres"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <label for="idSexo" class="col-form-label col-sm-1">Sexo</label>
+            <div class="col-sm-2">
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="F">Femenino</option>
+                <option value="M">Masculino</option>
+                <option value="I">Indeterminado</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <label for="fechaNacimiento" class="col-form-label col-sm-1">Fecha Nac.</label>
+            <div class="col-sm-2">
+              <input
+              type="date"
+              class="form-control"
+              id="fechaNacimiento"
+              formControlName="fechaNacimiento"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <label for="idTipoDocumento" class="col-form-label col-sm-1">Tipo Documento</label>
+            <div class="col-sm-2">
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="1">DNI</option>
+                <option value="2">Carne Extranjería</option>
+                <option value="3">Otro</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <label for="numDocumento" class="col-form-label col-sm-1">N° Documento</label>
+            <div class="col-sm-2">
+              <input
+              type="text"
+              class="form-control"
+              id="numDocumento"
+              formControlName="numDocumento"
+              placeholder="N° Documento"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <label for="telefono" class="col-form-label col-sm-1">N° Telefono</label>
+            <div class="col-sm-2">
+              <input
+              type="text"
+              class="form-control"
+              id="telefono"
+              formControlName="telefono"
+              placeholder="N° Telefono"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <label for="direccion" class="col-form-label col-sm-1">Direccion</label>
+            <div class="col-sm-2">
+              <input
+              type="text"
+              class="form-control"
+              id="direccion"
+              formControlName="direccion"
+              placeholder="Direccion"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <label for="idUbigeo" class="col-form-label col-sm-1">Ubigeo</label>
+            <div class="col-sm-2">
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="150101">Lima</option>
+                <option value="150102">Ancón</option>
+                <option value="150103">Otro</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="registrarPersona()">Registrar</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+      <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Apellido Paterno</th>
+          <th scope="col">Apellido Materno</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Sexo</th>
+          <th scope="col">fNac</th>
+          <th scope="col">tipoDoc</th>
+          <th scope="col">NDoc</th>
+          <th scope="col">Telefono</th>
+          <th scope="col">Direccion</th>
+          <th scope="col">Ubigeo</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(persona of personaArray; track persona.idPersona; let i=$index){
+          <tr>
+            <td>{{i+1}}</td>
+            <td>{{persona.apellidoPaterno}}</td>
+            <td>{{persona.apellidoMaterno}}</td>
+            <td>{{persona.nombres}}</td>
+            @if(persona.sexo){
+                <td>{{persona.sexo.descripcion}}</td>
+            }@else{
+              <td>Sin Genero</td>
+            }
+            <td>{{persona.fechaNacimiento}}</td>
+            @if(persona.tipoDocumento){
+              <td>{{persona.tipoDocumento.descripcion}}</td>
+            }@else{
+              <td>Sin Tipo Documento</td>
+            }
+            <td>{{persona.numDocumento}}</td>
+            <td>{{persona.telefono}}</td>
+            <td>{{persona.direccion}}</td>
+            @if(persona.ubigeo){
+              <td>
+                {{persona.ubigeo.departamento + "|" +persona.ubigeo.provincia+ "|" +persona.ubigeo.distrito}}
+              </td>
+            }@else{
+              <td>Sin Ubigeo</td>
+            }
+            <td>
+              <button class="btn btn-secondary rounded-circle p-2 lh-1" (click)="editarPersona(persona)">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+              <button class="btn btn-danger rounded-circle p-2 lh-1" (click)="eliminarPersona(persona)">
+                <i class="bi bi-trash3"></i>
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+      </div>
+    </div>
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</div>
