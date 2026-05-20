@@ -21,6 +21,9 @@ export class RegistrarPersona implements OnInit{
   title='Registrar Persona';
   personaArray:PersonaResponse[]=[];
   personaForm:FormGroup;
+  sexoArray:Sexo[]=[];
+  tipoDocumentoArray:TipoDocumento[]=[];
+  ubigeoArray:Ubigeo[]=[];
 
   private personaService = inject(PersonaService);
   private tipoDocumentoService=inject(TipoDocumentoService);
@@ -47,6 +50,9 @@ export class RegistrarPersona implements OnInit{
 
 
   ngOnInit(): void {
+    this.getSexo();
+    this.getTipoDocumento();
+    this.getUbigeo();
     this.getPersonas();
   }
 
@@ -59,10 +65,37 @@ export class RegistrarPersona implements OnInit{
   }
 
   getSexo():void{
+    this.sexoService.getSexo().subscribe((result:Sexo[])=>{
+      this.sexoArray=result;
+    });
+  }
 
+  setSexo(event:Event):void {
+    const inputChangeValue=(event.target as HTMLInputElement).value;
+    this.personaForm.controls['idSexo'].setValue(inputChangeValue);
 
   }
 
+  getTipoDocumento():void{
+    this.tipoDocumentoService.getTipoDocumento().subscribe((result:TipoDocumento[])=>{
+      this.tipoDocumentoArray=result;
+    });
+  }
+
+  setTipoDocumento(event: Event):void {
+    const inputChangeValue = (event.target as HTMLInputElement).value;
+    this.personaForm.controls['idTipoDocumento'].setValue(inputChangeValue);
+  }
+
+  getUbigeo():void{
+    this.ubigeoService.getUbigeo().subscribe((result:Ubigeo[])=>{
+      this.ubigeoArray=result;
+    });
+  }
+  setUbigeo(event:Event):void {
+    const inputChangeValue=(event.target as HTMLInputElement).value;
+    this.personaForm.controls['idUbigeo'].setValue(inputChangeValue);
+  }
 
   registrarPersona(){
 
