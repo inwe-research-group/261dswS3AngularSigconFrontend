@@ -7,11 +7,12 @@ import { ToastService } from '../../services/toast.service';
 import { UserRequest } from '../../model/api/request/user-request';
 import { UserResponse } from '../../model/api/response/user-response';
 import { SessionService } from '../../services/session.service';
+import { ToastContainer } from '../toast-container/toast-container';
 
 @Component({
   selector: 'app-inicio-sesion',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule],
+  imports: [ReactiveFormsModule, RouterModule,ToastContainer],
   templateUrl: './inicio-sesion.html',
   styleUrl: './inicio-sesion.scss',
 })
