@@ -10,10 +10,11 @@ import { PersonaResponse } from '../../../model/api/response/persona-response';
 import { Sexo } from '../../../model/sexo';
 import { TipoDocumento } from '../../../model/tipo-documento';
 import { Ubigeo } from '../../../model/ubigeo';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-registrar-persona',
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule,ReactiveFormsModule,NgxPaginationModule],
   templateUrl: './registrar-persona.html',
   styleUrl: './registrar-persona.scss',
 })
@@ -24,6 +25,7 @@ export class RegistrarPersona implements OnInit{
   sexoArray:Sexo[]=[];
   tipoDocumentoArray:TipoDocumento[]=[];
   ubigeoArray:Ubigeo[]=[];
+  page:number=1;
 
   private personaService = inject(PersonaService);
   private tipoDocumentoService=inject(TipoDocumentoService);
